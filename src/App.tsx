@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import {  useEffect, useState } from "react"
 import { getData } from "./utils/network/routes";
 import {accountData} from "./seeds"
 import Accounts from "./component/Accounts";
@@ -13,8 +13,11 @@ function App() {
     setIsLoading(true);
     const fetchAccounts = async() =>{
       // Fetching account list from API
-      // const response:any = await getData("https://firebasestorage.googleapis.com/v0/b/bplay-bab3c.appspot.com/o/plaid%2Faccount.json?alt=media&token=0f4b176d-ad1e-4105-9918-bdc37098c0d8");
-      setAccounts([...accountData])
+      const response:any = await getData("https://firebasestorage.googleapis.com/v0/b/bplay-bab3c.appspot.com/o/plaid%2Faccount.json?alt=media&token=0f4b176d-ad1e-4105-9918-bdc37098c0d8");
+      console.log(response);
+      if(response){
+        setAccounts([...response])
+      }
       setIsLoading(false)
     }
     fetchAccounts();
@@ -23,12 +26,12 @@ function App() {
   //Method to change current account data
   const _handleTransactions = async (account:any) =>{
     setIsLoading(true);
-    setTimeout(()=>{
+    setTimeout(async ()=>{
       const {id} = account;
-    // const transaction_data = await getData(account.txns);
+    const transaction_data = await getData(account.txns);
     //Checking if the api is called before and stored in cache
     if(!(id in txnsCache)){
-      txnsCache[id] = account.txns;  // storing returned data if its not cached
+      txnsCache[id] = transaction_data;  // storing returned data if its not cached
     }
     setCurrentAccountTxns(txnsCache[id]); //setting current account log
     setCurrentAccount(account);
