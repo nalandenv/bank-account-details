@@ -1617,7 +1617,7 @@ export const accountData = [
       "subtype": "savings",
       "created_at": "2021-11-23T08:06:25.235Z",
       "updated_at": "2021-11-23T08:06:34.867Z",
-      "txns": [
+      "txns":[
         {
           "id": 864,
           "account_id": 10,
@@ -1956,7 +1956,7 @@ export const accountData = [
           "created_at": "2021-11-23T08:06:36.147Z",
           "updated_at": "2021-11-23T08:06:36.147Z"
         }
-      ]      
+      ]   
     }
   ]
   

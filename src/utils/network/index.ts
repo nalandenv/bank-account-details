@@ -6,8 +6,9 @@ export const GetRequest = async (URL:string) =>{
     }
     try{
         const response = await axios.get(URL,{headers:{
-            'Access-Control-Allow-Origin' : "true",
-           "Content-Type": "application/json"
+            'Access-Control-Allow-Origin' : "*",
+           "Content-Type": "application/json",
+           "Content-Security-Policy":"default-src 'self'"
         }});
         return (response.status === 200)? response.data: {};
     } catch(e){
