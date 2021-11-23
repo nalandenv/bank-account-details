@@ -5,7 +5,10 @@ export const GetRequest = async (URL:string) =>{
         return;
     }
     try{
-        const response = await axios.get(URL);
+        const response = await axios.get(URL,{headers:{
+            'Access-Control-Allow-Origin' : "true",
+           "Content-Type": "application/json"
+        }});
         return (response.status === 200)? response.data: {};
     } catch(e){
         return;
